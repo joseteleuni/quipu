@@ -17,6 +17,7 @@ return new class extends Migration
             $table->char('ruc', length: 11);
             $table->char('dni', length: 8);
             $table->foreignId('cliente_id')->constrained();
+            $table->date('date_expiration');
             $table->timestamps();
         });
     }

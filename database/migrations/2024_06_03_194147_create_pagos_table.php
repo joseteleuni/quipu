@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->string('period', length: 15);
-            $table->string('name', length: 50);
-            $table->date('date_expiration');
             $table->date('date_payment');
             $table->string('state', length: 15);
-            $table->text('description');
+            $table->text('description')->nullable($value = true);
             $table->foreignId('empresa_id')->constrained();
             $table->timestamps();    
         });

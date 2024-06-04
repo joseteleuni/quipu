@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\DatePicker;
 
 class EmpresaResource extends Resource
 {
@@ -35,6 +36,7 @@ class EmpresaResource extends Resource
                 ->label('RUC')->numeric(),
                 TextInput::make('dni')
                 ->label('DNI')->numeric(),
+                DatePicker::make('date_expiration'),
                 Select::make('cliente_id')
                 ->relationship('cliente','name'),
                  
@@ -66,6 +68,7 @@ class EmpresaResource extends Resource
     {
         return [
             //
+            RelationManagers\PagosRelationManager::class,    
         ];
     }
 
