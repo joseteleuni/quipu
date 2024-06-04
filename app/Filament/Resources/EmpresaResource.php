@@ -13,6 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+//Forms y Tables
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+
 class EmpresaResource extends Resource
 {
     protected static ?string $model = Empresa::class;
@@ -24,6 +29,15 @@ class EmpresaResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')
+                ->label('Nombre de la empresa'),
+                TextInput::make('ruc')
+                ->label('RUC')->numeric(),
+                TextInput::make('dni')
+                ->label('DNI')->numeric(),
+                Select::make('cliente_id')
+                ->relationship('cliente','name'),
+                 
             ]);
     }
 
@@ -32,6 +46,8 @@ class EmpresaResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('name')
+                ->label('Nombre de la empresa')
             ])
             ->filters([
                 //

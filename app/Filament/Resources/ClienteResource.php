@@ -13,6 +13,12 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+//Forms y Tables
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+ 
+
 class ClienteResource extends Resource
 {
     protected static ?string $model = Cliente::class;
@@ -24,7 +30,14 @@ class ClienteResource extends Resource
         return $form
             ->schema([
                 //
-            ]);
+                TextInput::make('name')
+                ->label('Nombre del Cliente'),
+                TextInput::make('phone')
+                ->numeric()
+                ->label('Telefono'),
+                
+            ])
+            ->columns(2);
     }
 
     public static function table(Table $table): Table
@@ -32,6 +45,9 @@ class ClienteResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('name')
+                ->label('Nombre')
+
             ])
             ->filters([
                 //
