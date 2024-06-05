@@ -32,10 +32,21 @@ class EmpresaResource extends Resource
                 //
                 TextInput::make('name')
                 ->label('Nombre de la empresa'),
-                TextInput::make('ruc')
-                ->label('RUC')->numeric(),
-                TextInput::make('dni')
-                ->label('DNI')->numeric(),
+                Select::make('type')
+                ->options([
+                    'dni' => 'DNI',
+                    'ruc' => 'RUC',
+                ])
+                ->required()
+                ->live(), // Para que se vuelva a renderizar el campo 'number' al cambiar
+
+            TextInput::make('number')
+                ->required()
+                ->rule(function (callable $get) {
+                    return $get('type') === 'dni' 
+                        ? 'digits:8' 
+                        : 'digits:11';
+                }),
                 DatePicker::make('date_expiration'),
                 Select::make('cliente_id')
                 ->relationship('cliente','name'),
@@ -49,6 +60,7 @@ class EmpresaResource extends Resource
             ->columns([
                 //
                 TextColumn::make('name')
+                ->searchable()
                 ->label('Nombre de la empresa')
             ])
             ->filters([

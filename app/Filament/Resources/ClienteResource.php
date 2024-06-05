@@ -46,6 +46,7 @@ class ClienteResource extends Resource
             ->columns([
                 //
                 TextColumn::make('name')
+                ->searchable()
                 ->label('Nombre')
 
             ])

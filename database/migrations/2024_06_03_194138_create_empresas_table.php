@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->string('name', length: 50);
-            $table->char('ruc', length: 11);
-            $table->char('dni', length: 8);
+            $table->string('type', length: 3);
+            $table->string('number', length: 11);
             $table->foreignId('cliente_id')->constrained();
             $table->date('date_expiration');
             $table->timestamps();
