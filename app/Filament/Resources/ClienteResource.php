@@ -67,6 +67,8 @@ class ClienteResource extends Resource
     {
         return [
             //
+            RelationManagers\EmpresasRelationManager::class,
+
         ];
     }
 
