@@ -14,22 +14,15 @@ class EmpresasRelationManager extends RelationManager
 {
     protected static string $relationship = 'empresas';
 
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-            ]);
-    }
-
+    
     public function table(Table $table): Table
     {
         return $table
             ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('date_expiration'),
             ])
             ->filters([
                 //
@@ -38,8 +31,7 @@ class EmpresasRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+               
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

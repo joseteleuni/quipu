@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', length: 50);
             $table->string('phone', length: 20);
+            $table->string('status', length: 20);
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', length: 50);
             $table->string('type', length: 3);
             $table->string('number', length: 11);
+            $table->string('status', length: 20);
             $table->foreignId('cliente_id')->constrained();
             $table->date('date_expiration');
             $table->timestamps();

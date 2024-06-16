@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Filters\SelectFilter;
  
 
 class ClienteResource extends Resource
@@ -35,6 +36,12 @@ class ClienteResource extends Resource
                 TextInput::make('phone')
                 ->numeric()
                 ->label('Telefono'),
+                Select::make('status')
+                ->options([
+                    'ok' => 'Ok',
+                    'deuda' => 'Deuda',
+                ])
+                ->required()
                 
             ])
             ->columns(2);
@@ -47,11 +54,18 @@ class ClienteResource extends Resource
                 //
                 TextColumn::make('name')
                 ->searchable()
-                ->label('Nombre')
+                ->label('Nombre'),
+                TextColumn::make('status')
+                ->label('Estado'),
 
             ])
             ->filters([
                 //
+                SelectFilter::make('status')
+                ->options([
+                    'ok' => 'Ok',
+                    'deuda' => 'Deuda',
+    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

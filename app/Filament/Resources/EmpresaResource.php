@@ -39,8 +39,7 @@ class EmpresaResource extends Resource
                 ])
                 ->required()
                 ->live(), // Para que se vuelva a renderizar el campo 'number' al cambiar
-
-            TextInput::make('number')
+                TextInput::make('number')
                 ->required()
                 ->rule(function (callable $get) {
                     return $get('type') === 'dni' 
@@ -50,6 +49,13 @@ class EmpresaResource extends Resource
                 DatePicker::make('date_expiration'),
                 Select::make('cliente_id')
                 ->relationship('cliente','name'),
+                Select::make('status')
+                ->options([
+                    'ok' => 'Ok',
+                    'deuda' => 'Deuda',
+                    'bloqueado' => 'Bloqueado',
+                ])
+                ->required()
                  
             ]);
     }
